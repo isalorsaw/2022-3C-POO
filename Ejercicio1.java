@@ -29,6 +29,8 @@ public class Ejercicio1
         //Se hace la suma
         suma=n1+n2+n3;
         
+        //double prom=(n1+n2+n2)/4;
+        
         //Muestra el resultado de la suma
         JOptionPane.showMessageDialog(null,"La Suma de los numeros ingresados es: "+suma);
     }//Fin Main
