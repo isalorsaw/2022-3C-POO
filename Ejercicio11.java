@@ -20,7 +20,7 @@ public class Ejercicio11
         {
              JOptionPane.showMessageDialog(null,"Usd esta Reprobado");   
         }
-        else if(nota>70&&nota<90)
+        else if(nota>70&&nota<90)//Operaciones Logicas
         {
             JOptionPane.showMessageDialog(null,"Su Calificacion es Bueno");
         }
