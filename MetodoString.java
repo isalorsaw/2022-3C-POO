@@ -13,12 +13,25 @@ public class MetodoString
         {
             cadena=JOptionPane.showInputDialog("Ingrese una Cadena");
             
-            menu=JOptionPane.showInputDialog("OPCIONES DE MENU\n1. Tamaño de Cadena\n"+
-            "2. Mostrar Letra en Pos\n3. Mostrar Primera Letra\n4. Mostrar Ultima Letra\n "+
-            "5.Convertir a Minuscula\n6. Convertir a Mayuscula\n7. Invertir Cadena\n 8.Mostrar "+
-            "las minusculas\n9. Mostrar las mayusculas\n10. Mostrar la letra de enmedio (Si es posible)\n"+
-            "11.Remover Espacios\n12.Salir");
-            opcion=Integer.parseInt(menu);
+            boolean s=true;
+            //Ciclo para repetir el Menu hasta que el usuario ingrese una opcion valida
+            do
+            {
+                 try
+                {
+                    menu=JOptionPane.showInputDialog("OPCIONES DE MENU\n1. Tamaño de Cadena\n"+
+                    "2. Mostrar Letra en Pos\n3. Mostrar Primera Letra\n4. Mostrar Ultima Letra\n "+
+                    "5.Convertir a Minuscula\n6. Convertir a Mayuscula\n7. Invertir Cadena\n 8.Mostrar "+
+                    "las minusculas\n9. Mostrar las mayusculas\n10. Mostrar la letra de enmedio (Si es posible)\n"+
+                    "11.Remover Espacios\n12.Salir");
+                    opcion=Integer.parseInt(menu);  
+                    s=false;
+                }
+                catch(Exception exp)
+                {
+                    JOptionPane.showMessageDialog(null,"Opcion Invalida");
+                }
+            }while(s);
             
             switch(opcion)
             {
@@ -68,6 +81,11 @@ public class MetodoString
                         JOptionPane.showMessageDialog(null,"La Letra de enmedio es: ");
                         //SI Hay letra enmedio
                     }
+                break;
+                
+                case 11:
+                    String e=cadena.trim();
+                    JOptionPane.showMessageDialog(null,"La Cadena es <"+cadena+"> y sin Espacios es: <"+e+">");
                 break;
                 
                 case 12:
