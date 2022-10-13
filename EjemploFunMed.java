@@ -91,7 +91,7 @@ public class EjemploFunMed
         return s;
     }
     //Funcion de pedir un numero y devolverlo
-    public static int pedirNumero(String msg)
+    public static int pedirNumero(String msg)//PedirEntero
     {
         boolean seguir=true;
         String entrada="";
