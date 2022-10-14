@@ -32,7 +32,6 @@ public class RepasoCiclo
         {
             char l=p.charAt(i);
             int codigo=(int)l;
-            //System.out.println(codigo+" "+l);
             if(codigo>=48&&codigo<=57)c++;
         }
         return c;
