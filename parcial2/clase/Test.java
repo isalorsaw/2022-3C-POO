@@ -26,5 +26,9 @@ public class Test
         //Aumentar en Inventario Producto
         p1.aumentarInv(10);
         JOptionPane.showMessageDialog(null,p1.toString());
+        
+        //Producto p2=new Producto(1);
+        ///p1.nombre="OtroProducto";
+        mensaje(p1.cargosa);
     }
 }

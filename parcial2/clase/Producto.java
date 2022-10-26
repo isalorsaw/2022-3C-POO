@@ -6,6 +6,7 @@ public class Producto
     private String nombre;
     private double precio;
     private double inv;
+    public boolean esVacio;
     
     //constructores
     public Producto()//Constructor Vacio
@@ -14,6 +15,7 @@ public class Producto
         this.nombre="";
         this.precio=0;
         this.inv=0;
+        this.esVacio=true;
     }
     public Producto(int codigo,String nombre,double precio,double inv)//Constructor con Parametros
     {
@@ -21,6 +23,7 @@ public class Producto
         this.nombre=nombre;
         this.precio=precio;
         this.inv=inv;
+        this.esVacio=false;
     }
     public Producto(int c, String n, double p)
     {
@@ -28,6 +31,7 @@ public class Producto
         this.nombre=n;
         this.precio=p;
         this.inv=0;
+        this.esVacio=false;
     }
     
     //metodos set
@@ -71,7 +75,9 @@ public class Producto
     //toString() Mostrar la informacion de los atributos
     public String toString()
     {
-        String m="Codigo "+codigo+"\nNombre "+nombre+"\nPrecio "+precio+"\nExistencia "+inv;
+        String m="";
+        if(!esVacio)//esVacio==false
+        m="Codigo "+codigo+"\nNombre "+nombre+"\nPrecio "+precio+"\nExistencia "+inv;
         return m;
     }
 }
