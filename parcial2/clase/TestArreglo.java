@@ -15,6 +15,8 @@ public class TestArreglo
         double precio=4;//pedirDouble("Favor Ingresar un Precio del Producto");
         double inv=0;//pedirDouble("Favor ingresar el inventario de Producto");
         ingresarProducto(codigo,n,precio,inv,p);
+        ingresarProducto(2,"Panadol EF",5,10,p);
+        
         imprimir(p);
     }
     public static void ingresarProducto(int c, String n, double p, double in,Producto pr[])
@@ -32,10 +34,10 @@ public class TestArreglo
     }
     public static void imprimir(Producto pr[])
     {
-        String mensaje="Contenido de Producto\n";
+        String mensaje="Contenido de Producto";
         for(int i=0;i<pr.length;i++)
         {
-            mensaje+="Producto # "+(i+1)+"\n"+pr[i].toString()+"\n";
+            mensaje+="\nProducto # "+(i+1)+"\n"+pr[i].toString()+"\n======================================";
         }
         mensaje(mensaje);
     }
