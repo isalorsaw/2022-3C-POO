@@ -29,6 +29,6 @@ public class Test
         
         //Producto p2=new Producto(1);
         ///p1.nombre="OtroProducto";
-        mensaje(p1.cargosa);
+        //mensaje(p1.cargosa);
     }
 }
