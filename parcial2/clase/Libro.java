@@ -31,6 +31,15 @@ public class Libro
         prestados=0;
         //ejemplares=prestados=0;
     }
+    public void agregar()
+    {
+        String titulo=new BancoFM().pedirCadena("Favor INgrese el Titulo del Libro");
+        String autor=new BancoFM().pedirCadena("Favor INgrese el Autor del Libro");
+        int ej=new BancoFM().pedirNumero("Favor INgrese El Numero de Ejemplares");
+        setTitulo(titulo);
+        setAutor(autor);
+        setEjemplares(ej);
+    }
     //Metodo de set
     public void setTitulo(String titulo)
     {
@@ -64,6 +73,17 @@ public class Libro
     public int getPrestados()
     {
         return prestados;
+    }
+    //Funcion devolucion
+    public boolean devolucion()
+    {
+        boolean devuelto = true;
+        if (prestados == 0) {
+            devuelto = false;
+        } else {
+            prestados--;
+        }
+        return devuelto;
     }
     //Funcion prestamo
     public boolean prestamo()
