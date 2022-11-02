@@ -93,5 +93,8 @@ public class BancoFM
     {
         JOptionPane.showMessageDialog(null,m);
     }
-    //PedirDouble
+    public static int aleatorio(int d, int h)
+    {
+        return ((int)(Math.random()*(h-d+1)+d));
+    }
 }

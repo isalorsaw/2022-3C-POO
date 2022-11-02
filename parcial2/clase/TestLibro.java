@@ -26,6 +26,10 @@ public class TestLibro
                     agregar(l);
                 break;
                 
+                case 2:
+                     prestarLibro(l);   
+                break;
+                
                 case 5:
                     listarLibros(l);
                 break;
@@ -35,6 +39,19 @@ public class TestLibro
                 break;
             }
         }while(seguir);
+    }
+    public static void prestarLibro(Libro l[])
+    {
+        String nomlib=new BancoFM().pedirCadena("Coloque el Nombre del Libro a Buscar");
+        
+        for(int i=0;i<l.length;i++)
+        {
+            if(l[i].getTitulo().equals(nomlib))
+            {
+                l[i].prestamo();
+                i=l.length;
+            }
+        }
     }
     public static void listarLibros(Libro l[])
     {
