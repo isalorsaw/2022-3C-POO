@@ -2,12 +2,13 @@ package parcial2.IntroDibujar;
 import javax.swing.JFrame;
 public class Pral extends JFrame
 {
+    Escenario e;
     public Pral()
     {
         super("Titulo del Formulario");//Titulo que aparecera arriba de la ventana
-        
-        
-        setSize(500,300);//Tamanio X Y, Alto y Ancho
+        e=new Escenario();
+        add(e);
+        setSize(800,500);//Tamanio X Y, Alto y Ancho
         setVisible(true);//Va a mostrar el Formulario con true, sino false
         setLocationRelativeTo(null);//Centra el Formulario
     }
