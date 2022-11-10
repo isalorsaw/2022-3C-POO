@@ -1,21 +1,35 @@
 package parcial2.Juego;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 import java.awt.Graphics;
 import java.awt.Image;
 //Librerias para Evento del Teclado
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-public class Escenario extends JPanel implements KeyListener
+//Librerias para Evento de Accion
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+public class Escenario extends JPanel implements KeyListener, ActionListener
 {
     ImageIcon icono;
     Image imagen;
     Rifle rif;
+    Gota got;
+    Timer t;
     public Escenario()
     {
         //Inicializar El Fondo
         this.icono=new ImageIcon(getClass().getResource("Imagenes/fondo.png"));
         this.imagen=icono.getImage();
+        
+        //Inicializar el Timer
+        t=new Timer(2,null);
+        t.addActionListener(this);
+        t.start();
+        
+        //Inicializar la Gota
+        got=new Gota(400,30,"Imagenes/gota.png");
         
         //Importante Agregar la escucha del evento del teclado
         addKeyListener(this);
@@ -40,7 +54,7 @@ public class Escenario extends JPanel implements KeyListener
     {
         int codigo=e.getKeyCode();
         char c=e.getKeyChar();
-        System.out.println("Codigo "+codigo+" Char "+c);
+        //System.out.println("Codigo "+codigo+" Char "+c);
         
         if(codigo==39)rif.mover('d');
         else if(codigo==37)rif.mover('i');
@@ -48,11 +62,17 @@ public class Escenario extends JPanel implements KeyListener
         else if(codigo==40)rif.mover('b');
         repaint();
     }
+    public void actionPerformed(ActionEvent e)
+    {
+        got.mover();
+        repaint();
+    }
     public void paint(Graphics g)
     {
         super.paint(g);
         dibujarFondo(g);
         rif.dibujar(g);
+        got.dibujar(g);
     }
     public void dibujarFondo(Graphics g)
     {
