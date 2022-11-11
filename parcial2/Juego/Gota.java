@@ -16,6 +16,8 @@ public class Gota extends Coordenada
     {
         int yy=getY()+1;
         setY(yy);
+        
+        //if(getY()>limite)setY(10);
     }
     public void dibujar(Graphics g)
     {

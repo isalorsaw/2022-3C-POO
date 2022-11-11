@@ -10,10 +10,10 @@ public class Rifle extends Coordenada
     String rutader="Imagenes/rifleder.png";
     String rutaarr="Imagenes/rifleup.png";
     String rutabajo="Imagenes/rifledown.png";
-    public Rifle(int x, int y)
+    public Rifle(int x, int y, String r)
     {
         super(x,y);
-        this.icono=new ImageIcon(getClass().getResource(rutader));
+        this.icono=new ImageIcon(getClass().getResource("Imagenes/"+r));
         imagen=icono.getImage();
     }
     public void mover(char mov)

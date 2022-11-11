@@ -15,7 +15,9 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
     ImageIcon icono;
     Image imagen;
     Rifle rif;
+    Rifle rif2;
     Gota got;
+    Gota gots[];
     Timer t;
     public Escenario()
     {
@@ -30,41 +32,83 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
         
         //Inicializar la Gota
         got=new Gota(400,30,"Imagenes/gota.png");
-        
+        gots=new Gota[20];
+        inicializarGotas();
         //Importante Agregar la escucha del evento del teclado
         addKeyListener(this);
         setFocusable(true);
         
-        rif=new Rifle(200,200);
+        rif=new Rifle(200,200,"rifleder.png");
+        rif2=new Rifle(600,200,"rifleizq.png");
         setVisible(true);
+    }
+    public static int aleatorio(int d, int h)
+    {
+        return ((int)(Math.random()*(h-d+1)+d));
+    }
+    public void inicializarGotas()
+    {
+        for(int i=0;i<gots.length;i++)
+        {
+            int xx=aleatorio(10,700);
+            int yy=10;
+            gots[i]=new Gota(xx,yy,"Imagenes/gota.png");
+        }
+    }
+    public void moverGotas()
+    {
+        for(int i=0;i<gots.length;i++)
+        {
+            gots[i].mover();
+        }
+    }
+    public void dibujarGotas(Graphics g)
+    {
+        for(int i=0;i<gots.length;i++)
+        {
+            gots[i].dibujar(g);
+        }
     }
     public void keyTyped(KeyEvent e)//Tocar tecla
     {
-        /*int codigo=e.getKeyCode();
-        char c=e.getKeyChar();
-        System.out.println(codigo+" "+c);*/
     }
     public void keyReleased(KeyEvent e)//Soltar tecla
     {
-        /*int codigo=e.getKeyCode();
-        char c=e.getKeyChar();
-        System.out.println(codigo+" "+c);*/
     }
     public void keyPressed(KeyEvent e)//Presionar Tecla
     {
         int codigo=e.getKeyCode();
-        char c=e.getKeyChar();
-        //System.out.println("Codigo "+codigo+" Char "+c);
-        
-        if(codigo==39)rif.mover('d');
-        else if(codigo==37)rif.mover('i');
-        else if(codigo==38)rif.mover('a');
-        else if(codigo==40)rif.mover('b');
+        //moverNormal(codigo);
+        mover2Player(codigo);
         repaint();
+    }
+    public void mover2Player(int codigo)
+    {
+        if(codigo==KeyEvent.VK_RIGHT)rif2.mover('d');
+        else if(codigo==KeyEvent.VK_LEFT)rif2.mover('i');
+        else if(codigo==KeyEvent.VK_UP)rif2.mover('a');
+        else if(codigo==KeyEvent.VK_DOWN)rif2.mover('b');
+        
+        if(codigo==KeyEvent.VK_W)rif.mover('a');
+        else if(codigo==KeyEvent.VK_S)rif.mover('b');
+        else if(codigo==KeyEvent.VK_A)rif.mover('i');
+        else if(codigo==KeyEvent.VK_D)rif.mover('d');        
+    }
+    public void moverNormal(int codigo)
+    {
+        if(codigo==KeyEvent.VK_RIGHT)rif.mover('d');
+        else if(codigo==KeyEvent.VK_LEFT)rif.mover('i');
+        else if(codigo==KeyEvent.VK_UP)rif.mover('a');
+        else if(codigo==KeyEvent.VK_DOWN)rif.mover('b');
+        else if(codigo==KeyEvent.VK_W)rif.mover('a');
+        else if(codigo==KeyEvent.VK_S)rif.mover('b');
+        else if(codigo==KeyEvent.VK_A)rif.mover('i');
+        else if(codigo==KeyEvent.VK_D)rif.mover('d');
     }
     public void actionPerformed(ActionEvent e)
     {
         got.mover();
+        moverGotas();
         repaint();
     }
     public void paint(Graphics g)
@@ -72,7 +116,9 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
         super.paint(g);
         dibujarFondo(g);
         rif.dibujar(g);
+        rif2.dibujar(g);
         got.dibujar(g);
+        dibujarGotas(g);
     }
     public void dibujarFondo(Graphics g)
     {
