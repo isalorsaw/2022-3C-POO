@@ -2,6 +2,7 @@ package parcial2.Juego;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 public class Rifle extends Coordenada
 {
     ImageIcon icono;
@@ -10,11 +11,24 @@ public class Rifle extends Coordenada
     String rutader="Imagenes/rifleder.png";
     String rutaarr="Imagenes/rifleup.png";
     String rutabajo="Imagenes/rifledown.png";
+    Rectangle rec;
     public Rifle(int x, int y, String r)
     {
         super(x,y);
         this.icono=new ImageIcon(getClass().getResource("Imagenes/"+r));
         imagen=icono.getImage();
+    }
+    public Rectangle rect()
+    {
+        this.rec=new Rectangle(this.getX(),this.getY(),icono.getIconWidth(),icono.getIconHeight());
+        return this.rec;
+    }
+    public boolean detectarChoque(Rectangle recotro)
+    {
+        boolean sichoque=false;
+        if(this.rec.intersects(recotro))sichoque=true;
+        return sichoque;
+        
     }
     public void mover(char mov)
     {

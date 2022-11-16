@@ -50,7 +50,8 @@ public class Escenario extends JPanel implements ActionListener, KeyListener, Mo
     }
     public void actionPerformed(ActionEvent e)
     {
-        b.mover('i');
+        //b.mover('i');
+        b.flotar();
         repaint();
     }
     public void paint(Graphics g)
@@ -58,6 +59,7 @@ public class Escenario extends JPanel implements ActionListener, KeyListener, Mo
         super.paint(g);
         b.dibujar(g);
         g.drawLine(33,457,935,457);
+        g.drawString(b.toString(),400,500);
     }
     public static int aleatorio(int d, int h)
     {

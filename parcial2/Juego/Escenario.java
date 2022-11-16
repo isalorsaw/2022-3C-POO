@@ -109,6 +109,7 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
     {
         got.mover();
         moverGotas();
+        if(rif2.detectarChoque(rif.rec))System.out.println("Chocaron");
         repaint();
     }
     public void paint(Graphics g)
