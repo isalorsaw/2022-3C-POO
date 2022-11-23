@@ -1,6 +1,4 @@
 package parcial3.EjemploAudio;
-
-package parcial3.EjemploAudio
 import javazoom.jl.player.Player;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
