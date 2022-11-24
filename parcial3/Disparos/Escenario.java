@@ -14,18 +14,11 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
 {
     Rifle rif;
     Timer t;
-    Bala b[]=new Bala[5];
+    Bala b[]=new Bala[0];
     int indice;
- /*   ImageIcon icono;
-    Image imagen;
-    Rifle rif;
-    Rifle rif2;
-    Gota got;
-    Gota gots[];
-    Timer t;*/
     public Escenario()
     {
-        t=new Timer(2,null);
+        t=new Timer(5,null);
         t.addActionListener(this);
         t.start();
         
@@ -75,14 +68,33 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
         else if(codigo==KeyEvent.VK_UP)rif.mover('a');
         else if(codigo==KeyEvent.VK_DOWN)rif.mover('b');
         else if(codigo==KeyEvent.VK_SPACE)
-        {
-            if(indice<b.length-1)//Lo quitaremos cuando redefinamos el arreglo
-            b[indice]=new Bala(rif.x,rif.y);
-            b[indice].visible=true;//Se hace de esta manera porque visible es public
-            indice++;
+        {   //Indice 0,1,2,3,4,5         5-1=4
+            /*if(indice<b.length)//Lo quitaremos cuando redefinamos el arreglo
+            {    
+                /*b[indice]=new Bala(rif.x,rif.y);
+                b[indice].visible=true;//Se hace de esta manera porque visible es public
+                indice++;
+            }*/
+            redefinirBala();
         }
         repaint();
         
+    }
+    public void redefinirBala()
+    {
+        redefinir();
+        System.out.println(b.length+" Length de Balas");
+        //b[b.length-1]=new Bala(rif.x,rif.y,true);
+        //imprimir(b,"Coordenadas de Bala");
+    }
+    public void imprimir(Bala ba[], String titulo)
+    {
+        String c=titulo+"\n";
+        for(int i=0;i<ba.length;i++)
+        {
+            c+="Indice"+i+" "+ba[i].toString()+"\n";
+        }
+        System.out.println(c);
     }
     public void actionPerformed(ActionEvent e)
     {
@@ -93,10 +105,11 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
         super.paint(g);
         rif.dibujar(g);
         dibujarBalas(g);
-        System.out.println(indice+"");
+        //System.out.println(indice+"");
     }
     public void dibujarBalas(Graphics g)
     {
+        System.out.println(b.length+" Length de Balas");
         for(int i=0;i<b.length;i++)
         {
             b[i].dibujar(g);
@@ -105,5 +118,19 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
     public void dibujarFondo(Graphics g)
     {
         //g.drawImage(this.imagen,0,0,null);
+    }
+    public void redefinir()
+    {
+        Bala tmp[]=new Bala[b.length+1];
+        
+        for(int i=0;i<b.length;i++)//Recorrido de guardar la Bala dentro de temporal
+        {
+            tmp[i]=new Bala(b[i].x,b[i].y,b[i].visible);
+        }
+        b=new Bala[tmp.length];
+        for(int i=0;i<tmp.length;i++)//Recorrido de guardar temp dentro de bala
+        {
+            b[i]=new Bala(tmp[i].x,tmp[i].y,b[i].visible);
+        }
     }
 }
