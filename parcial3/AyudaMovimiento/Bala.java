@@ -1,4 +1,4 @@
-package parcial3.Disparos;
+package parcial3.AyudaMovimiento;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -9,9 +9,9 @@ public class Bala
     int y;
     ImageIcon icono;
     Image imagen;
-    String ruta="Imagenes/balared.png";
-    Rectangle rec;
-    boolean visible;
+    String ruta="bala.png";
+    Rectangle rec;//Intersect
+    boolean visible;//Si se ve la bala o no
     public Bala(int x, int y)
     {
         this.x=x;
@@ -28,10 +28,25 @@ public class Bala
         imagen=icono.getImage();
         this.visible=visible;
     }
+    public Rectangle rect()//Funcion para Intersect
+    {
+        this.rec=new Rectangle(this.x,this.y,icono.getIconWidth(),icono.getIconHeight());
+        return this.rec;
+    }
+    public boolean detectarChoque(Rectangle otrorec)//Funcion para choque con otro rec
+    {
+        if(this.rec.intersects(otrorec))return true;
+        else return false;
+    }
     public void mover(char dir)
     {
         //Pendiente
         x++;
+    }
+    public void moverDiagonal()
+    {
+        x++;
+        y++;
     }
     public void dibujar(Graphics g)
     {

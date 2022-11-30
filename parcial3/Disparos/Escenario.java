@@ -84,8 +84,8 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
     {
         redefinir();
         System.out.println(b.length+" Length de Balas");
-        //b[b.length-1]=new Bala(rif.x,rif.y,true);
-        //imprimir(b,"Coordenadas de Bala");
+        b[b.length-1]=new Bala(rif.x,rif.y,true);
+        imprimir(b,"Coordenadas de Bala");
     }
     public void imprimir(Bala ba[], String titulo)
     {
@@ -98,7 +98,15 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
     }
     public void actionPerformed(ActionEvent e)
     {
-        //repaint();
+        moverBalas();
+        repaint();
+    }
+    public void moverBalas()
+    {
+        for(int i=0;i<b.length;i++)
+        {
+            b[i].mover('i');
+        }
     }
     public void paint(Graphics g)
     {
@@ -128,9 +136,9 @@ public class Escenario extends JPanel implements KeyListener, ActionListener
             tmp[i]=new Bala(b[i].x,b[i].y,b[i].visible);
         }
         b=new Bala[tmp.length];
-        for(int i=0;i<tmp.length;i++)//Recorrido de guardar temp dentro de bala
+        for(int i=0;i<tmp.length-1;i++)//Recorrido de guardar temp dentro de bala
         {
-            b[i]=new Bala(tmp[i].x,tmp[i].y,b[i].visible);
+            b[i]=new Bala(tmp[i].x,tmp[i].y,tmp[i].visible);//Cambio tmp por b de i visible
         }
     }
 }

@@ -2,12 +2,18 @@ package parcial3.EjemploAudio;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.Scanner;
+import java.io.File;
 public class MainAudio 
 {
     public static void main(String[] args) 
     {
 
-        String filename = "mp3/mariobros.mp3";
+        //String filename = "mp3/mariobros.mp3";
+        
+        File file=new File("parcial3/EjemploAudio/mp3/mariobros.mp3");
+        String filename=file.getAbsolutePath();
+        System.out.println(file);
+        
         MP3Player mp3Player = new MP3Player(filename);
         mp3Player.play();
 

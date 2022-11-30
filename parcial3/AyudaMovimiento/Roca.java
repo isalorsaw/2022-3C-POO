@@ -1,18 +1,18 @@
-package parcial3.Disparos;
+package parcial3.AyudaMovimiento;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-public class Bala
+public class Roca
 {
     int x;
     int y;
     ImageIcon icono;
     Image imagen;
-    String ruta="Imagenes/balared.png";
-    Rectangle rec;
-    boolean visible;
-    public Bala(int x, int y)
+    String ruta="rock.png";
+    Rectangle rec;//Intersect
+    boolean visible;//Si se ve la bala o no
+    public Roca(int x, int y)
     {
         this.x=x;
         this.y=y;
@@ -20,7 +20,7 @@ public class Bala
         imagen=icono.getImage();
         visible=false;
     }
-    public Bala(int x, int y, boolean visible)
+    public Roca(int x, int y, boolean visible)
     {
         this.x=x;
         this.y=y;
@@ -28,10 +28,10 @@ public class Bala
         imagen=icono.getImage();
         this.visible=visible;
     }
-    public void mover(char dir)
+    public Rectangle rect()//Funcion para Intersect
     {
-        //Pendiente
-        x++;
+        this.rec=new Rectangle(this.x,this.y,icono.getIconWidth(),icono.getIconHeight());
+        return this.rec;
     }
     public void dibujar(Graphics g)
     {
