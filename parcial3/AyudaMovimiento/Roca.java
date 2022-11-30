@@ -19,6 +19,7 @@ public class Roca
         this.icono=new ImageIcon(getClass().getResource(ruta));
         imagen=icono.getImage();
         visible=false;
+        rec=rect();
     }
     public Roca(int x, int y, boolean visible)
     {
@@ -28,9 +29,14 @@ public class Roca
         imagen=icono.getImage();
         this.visible=visible;
     }
-    public Rectangle rect()//Funcion para Intersect
+    /*public Rectangle rect()//Funcion para Intersect
     {
         this.rec=new Rectangle(this.x,this.y,icono.getIconWidth(),icono.getIconHeight());
+        return this.rec;
+    }*/
+    public Rectangle rect()//Funcion para Intersect
+    {
+        this.rec=new Rectangle(this.x+40,this.y,icono.getIconWidth(),icono.getIconHeight());
         return this.rec;
     }
     public void dibujar(Graphics g)

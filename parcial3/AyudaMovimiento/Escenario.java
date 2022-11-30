@@ -10,21 +10,23 @@ import java.awt.event.KeyEvent;
 //Librerias para Evento de Accion
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class Escenario extends JPanel implements ActionListener
+import java.io.File;
+public class Escenario extends JPanel implements KeyListener,ActionListener
 {
+    String rutaproy="parcial3/AyudaMovimiento/mp3/";
     Timer t;
     Bala b;
     Roca r;
     public Escenario()
     {
         b=new Bala(10,10,true);
-        r=new Roca(400,350,true);
+        r=new Roca(200,200,true);
         
-        t=new Timer(5,null);
+        t=new Timer(10,null);
         t.addActionListener(this);
         t.start();
         
-        //addKeyListener(this);
+        addKeyListener(this);
         setFocusable(true);
         
         
@@ -56,6 +58,10 @@ public class Escenario extends JPanel implements ActionListener
     }
     public void keyPressed(KeyEvent e)//Presionar Tecla
     {
+        if(e.getKeyCode()==e.VK_SPACE)
+        {
+            playSound("mariobros.mp3");
+        }
     }
     public void redefinirBala()
     {
@@ -64,13 +70,32 @@ public class Escenario extends JPanel implements ActionListener
         b[b.length-1]=new Bala(rif.x,rif.y,true);
         imprimir(b,"Coordenadas de Bala");*/
     }
-    
+    public void playSound(String filename)
+    {
+        //File file=new File("C:/shot.mp3");
+        File file=new File(rutaproy+filename);
+        String ruta=file.getAbsolutePath();
+        //System.out.println(ruta);
+        
+        //String filename = "mariobros.mp3";//Inicializamos la Ruta
+        MP3Player mp3Player = new MP3Player(ruta);//Inicializamos MP3Player
+       // mp3Player.setVolume(-30f);
+        mp3Player.play();//Reproducimos
+    }
     public void actionPerformed(ActionEvent e)
     {
         //b.moverDiagonal();
         //repaint();
         boolean sichoque=b.detectarChoque(r.rect());
-        if(sichoque)System.out.println("Si hay choque");
+        if(sichoque)
+        {
+             //b.visible=false; 
+             //b.setVisible(false);
+             b=new Bala(10,10,true);
+             playSound("shot.mp3");
+        }
+        else System.out.println("TODAVIA NO!");
+        
         b.moverDiagonal();
         repaint();
     }

@@ -19,6 +19,7 @@ public class Bala
         this.icono=new ImageIcon(getClass().getResource(ruta));
         imagen=icono.getImage();
         visible=false;
+        rec=rect();
     }
     public Bala(int x, int y, boolean visible)
     {
@@ -28,6 +29,10 @@ public class Bala
         imagen=icono.getImage();
         this.visible=visible;
     }
+    public void setVisible(boolean v)
+    {
+        visible=v;
+    }
     public Rectangle rect()//Funcion para Intersect
     {
         this.rec=new Rectangle(this.x,this.y,icono.getIconWidth(),icono.getIconHeight());
@@ -35,7 +40,7 @@ public class Bala
     }
     public boolean detectarChoque(Rectangle otrorec)//Funcion para choque con otro rec
     {
-        if(this.rec.intersects(otrorec))return true;
+        if(rect().intersects(otrorec))return true;
         else return false;
     }
     public void mover(char dir)

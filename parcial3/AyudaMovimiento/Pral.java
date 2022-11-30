@@ -6,6 +6,7 @@ public class Pral extends JFrame
     public Pral()
     {
         super("Titulo del Formulario");//Titulo que aparecera arriba de la ventana
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Para todo el proceso al darle click en X del Frame
         e=new Escenario();
         add(e);        
         setSize(800,500);//Tamanio X Y, Alto y Ancho
